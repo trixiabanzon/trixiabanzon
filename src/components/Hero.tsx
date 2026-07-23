@@ -1,29 +1,61 @@
 export default function Hero() {
   return (
-    <section className="flex min-h-screen flex-col justify-center">
-      <p className="mb-4 font-mono text-sm font-semibold text-[#64ffda]">
-        Hi, my name is
-      </p>
+    <header className="lg:sticky lg:top-0 lg:flex lg:max-h-screen lg:w-[45%] lg:flex-col lg:justify-between lg:py-24">
+      <div>
+        {/* Added pt-8 here for space above the name */}
+        <h1 className="pt-8 text-4xl font-bold tracking-tight text-slate-200 sm:text-[44px]">
+          <a href="/">Trixia Mae Banzon</a>
+        </h1>
 
-      <h1 className="m-0 text-[clamp(2.8rem,8vw,5.5rem)] font-bold leading-none text-[#e6f1ff]">
-        Trixia Mae Banzon.
-      </h1>
+        {/* Job Title */}
+        <h2 className="mt-3 text-lg font-medium tracking-tight text-slate-200 sm:text-xl">
+          Full-Stack Developer
+        </h2>
 
-      <h2 className="mt-3 mb-6 text-[clamp(2rem,6vw,4rem)] font-bold leading-tight text-[#8892b0]">
-        I build web applications and backend systems.
-      </h2>
+        {/* Bio Text */}
+        <p className="mt-4 max-w-xs text-[17px] leading-relaxed text-slate-400">
+          I build web applications, reliable APIs, and clean backend systems.
+        </p>
 
-      <p className="max-w-xl text-base leading-8 text-[#8892b0]">
-        I’m a full-stack developer with a backend focus, interested in building
-        reliable APIs, clean interfaces, and practical software systems.
-      </p>
+        {/* Navigation */}
+        <nav className="nav hidden lg:block" aria-label="In-page jump links">
+          <ul className="mt-16 w-max space-y-2">
+            <li>
+              <a className="group flex items-center py-3" href="#about">
+                <span className="mr-4 h-px w-8 bg-slate-600 transition-all group-hover:w-16 group-hover:bg-[#64ffda]"></span>
+                <span className="text-xs font-bold uppercase tracking-widest text-slate-400 group-hover:text-[#64ffda]">
+                  About
+                </span>
+              </a>
+            </li>
+            <li>
+              <a className="group flex items-center py-3" href="#experience">
+                <span className="mr-4 h-px w-8 bg-slate-600 transition-all group-hover:w-16 group-hover:bg-[#64ffda]"></span>
+                <span className="text-xs font-bold uppercase tracking-widest text-slate-400 group-hover:text-[#64ffda]">
+                  Experience
+                </span>
+              </a>
+            </li>
+            <li>
+              <a className="group flex items-center py-3" href="#projects">
+                <span className="mr-4 h-px w-8 bg-slate-600 transition-all group-hover:w-16 group-hover:bg-[#64ffda]"></span>
+                <span className="text-xs font-bold uppercase tracking-widest text-slate-400 group-hover:text-[#64ffda]">
+                  Projects
+                </span>
+              </a>
+            </li>
+          </ul>
+        </nav>
+      </div>
 
-      <a
-        href="#about"
-        className="mt-8 w-fit rounded border border-[#64ffda] px-6 py-4 font-mono text-sm text-[#64ffda] transition hover:bg-[#64ffda]/10"
-      >
-        About me
-      </a>
-    </section>
+      <ul className="ml-1 mt-8 flex items-center gap-6 text-sm font-medium text-slate-400">
+        <li className="hover:text-[#64ffda] transition">
+          <a href="https://github.com" target="_blank" rel="noreferrer">GitHub</a>
+        </li>
+        <li className="hover:text-[#64ffda] transition">
+          <a href="https://linkedin.com" target="_blank" rel="noreferrer">LinkedIn</a>
+        </li>
+      </ul>
+    </header>
   );
 }
