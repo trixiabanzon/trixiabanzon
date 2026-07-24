@@ -33,15 +33,15 @@ export default function About() {
 
       {/* TOP ROW: Profile Image + 1st Paragraph */}
       <div className="grid grid-cols-1 items-start gap-6 sm:grid-cols-[auto_1fr]">
-        <div className="group relative h-44 w-40 shrink-0 sm:h-56 sm:w-52">
-          <div className="h-full w-full overflow-hidden rounded-2xl border border-slate-700/60 bg-[#112240] shadow-xl transition-transform duration-300 group-hover:-translate-y-1 group-hover:border-[#c084fc]/50">
+        <div className="relative h-44 w-40 shrink-0 sm:h-56 sm:w-52">
+          {/* Static image container with a thicker, clearer border */}
+          <div className="h-full w-full overflow-hidden rounded-lg border-[3px] border-slate-600 bg-[#112240] shadow-xl">
             <img
               src={sablayPic}
               alt="Trixia Mae Banzon"
               className="h-full w-full object-cover object-center"
             />
           </div>
-          <div className="absolute -inset-0.5 -z-10 rounded-2xl bg-gradient-to-tr from-[#c084fc]/20 to-transparent blur opacity-0 transition duration-300 group-hover:opacity-100" />
         </div>
 
         {/* Right Side 1st Paragraph */}
