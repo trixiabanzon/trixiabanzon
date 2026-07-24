@@ -67,12 +67,12 @@ export default function Hero({ activeSection = "about" }: HeroProps) {
       {/* Social Links — Added -translate-y-2 to nudge it UP slightly */}
       <ul className="ml-1 mt-8 -translate-y-2 flex items-center gap-6 text-sm font-medium text-slate-400">
         <li className="hover:text-[#c084fc] transition-colors">
-          <a href="https://github.com" target="_blank" rel="noreferrer">
+          <a href="https://github.com/trixiabanzon" target="_blank" rel="noreferrer">
             GitHub
           </a>
         </li>
         <li className="hover:text-[#c084fc] transition-colors">
-          <a href="https://linkedin.com" target="_blank" rel="noreferrer">
+          <a href="https://linkedin.com/in/trixiabanzon" target="_blank" rel="noreferrer">
             LinkedIn
           </a>
         </li>
