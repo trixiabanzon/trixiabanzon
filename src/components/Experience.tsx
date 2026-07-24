@@ -85,7 +85,7 @@ export default function Experience() {
             {currentData.map((item: ExperienceItem) => (
               <div
                 key={item.id}
-                className="group relative grid p-5 sm:px-6 sm:py-5 transition-all sm:grid-cols-8 sm:gap-8 md:gap-4 lg:hover:!opacity-100 lg:group-hover/jobs:opacity-50 cursor-pointer"
+                className="group relative grid p-5 sm:px-6 sm:py-5 transition-all sm:grid-cols-8 sm:gap-8 md:gap-4 lg:hover:!opacity-100 lg:group-hover/jobs:opacity-50"
               >
                 {/* Hover overlay */}
                 <div className="absolute inset-0 z-0 hidden rounded-md transition motion-reduce:transition-none lg:block lg:group-hover:bg-slate-800/50 lg:group-hover:shadow-[inset_0_1px_0_0_rgba(148,163,184,0.1)] lg:group-hover:drop-shadow-lg" />
@@ -98,7 +98,7 @@ export default function Experience() {
                 <div className="z-10 sm:col-span-6">
                   {/* ROLE & COMPANY */}
                   <div>
-                    <h3 className="text-sm sm:text-base font-semibold leading-snug text-slate-200 transition-colors group-hover:text-[#c084fc] flex items-center justify-between">
+                    <h3 className="text-sm sm:text-base font-semibold leading-snug text-slate-200 flex items-center justify-between">
                       <span>{item.role}</span>
                       {item.link && (
                         <a
@@ -106,14 +106,12 @@ export default function Experience() {
                           target="_blank"
                           rel="noreferrer noopener"
                           aria-label={`Visit website for ${item.company}`}
-                          className="inline-flex items-center focus-visible:outline-none"
+                          className="group/link inline-flex items-center p-1 focus-visible:outline-none"
                         >
-                          {/* Stretched link to make the whole card clickable */}
-                          <span className="absolute inset-0 z-20 rounded-md" aria-hidden="true" />
                           <img
                             src={externalLink}
                             alt=""
-                            className="relative z-30 h-4 w-4 shrink-0 transition-all brightness-0 invert-[60%] group-hover:filter-[invert(63%)_sepia(45%)_saturate(2500%)_hue-rotate(225deg)_brightness(102%)_contrast(98%)] group-hover:-translate-y-0.5 group-hover:translate-x-0.5"
+                            className="relative z-30 h-4 w-4 shrink-0 transition-all brightness-0 invert-[60%] group-hover/link:filter-[invert(63%)_sepia(45%)_saturate(2500%)_hue-rotate(225deg)_brightness(102%)_contrast(98%)] group-hover/link:-translate-y-0.5 group-hover/link:translate-x-0.5"
                           />
                         </a>
                       )}
