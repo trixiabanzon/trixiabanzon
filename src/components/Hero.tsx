@@ -7,7 +7,6 @@ export default function Hero({ activeSection = "about" }: HeroProps) {
     { name: "About", href: "#about" },
     { name: "Experience", href: "#experience" },
     { name: "Projects", href: "#projects" },
-    { name: "Interests", href: "#interests" },
   ];
 
   return (
@@ -65,8 +64,8 @@ export default function Hero({ activeSection = "about" }: HeroProps) {
         </nav>
       </div>
 
-      {/* Social Links */}
-      <ul className="ml-1 mt-8 flex items-center gap-6 text-sm font-medium text-slate-400">
+      {/* Social Links — Added -translate-y-2 to nudge it UP slightly */}
+      <ul className="ml-1 mt-8 -translate-y-2 flex items-center gap-6 text-sm font-medium text-slate-400">
         <li className="hover:text-[#c084fc] transition-colors">
           <a href="https://github.com" target="_blank" rel="noreferrer">
             GitHub
