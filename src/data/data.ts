@@ -24,10 +24,6 @@ export const WORK_EXPERIENCE: ExperienceItem[] = [
     company: "Company Name",
     description:
       "Developed full-stack web applications, built RESTful APIs using Node.js and Express.js, and integrated responsive frontend UIs using Tailwind CSS.",
-    bullets: [
-      "Engineered scalable API endpoints reducing latency across client platforms.",
-      "Collaborated with design teams to implement modern responsive user interface components.",
-    ],
     skills: ["Node.js", "Express.js", "Tailwind CSS", "JavaScript"],
   },
 ];
