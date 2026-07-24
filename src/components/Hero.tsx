@@ -1,15 +1,26 @@
-export default function Hero() {
+interface HeroProps {
+  activeSection?: string;
+}
+
+export default function Hero({ activeSection = "about" }: HeroProps) {
+  const navItems = [
+    { name: "About", href: "#about" },
+    { name: "Experience", href: "#experience" },
+    { name: "Projects", href: "#projects" },
+    { name: "Interests", href: "#interests" },
+  ];
+
   return (
     <header className="lg:sticky lg:top-0 lg:flex lg:max-h-screen lg:w-[45%] lg:flex-col lg:justify-between lg:py-24">
       <div>
-        {/* Added pt-8 here for space above the name */}
-        <h1 className="pt-8 text-4xl font-bold tracking-tight text-slate-200 sm:text-[44px]">
+        {/* Name - Removed pt-8 here */}
+        <h1 className="text-5xl font-normal italic tracking-tight text-slate-100 sm:text-[56px] [font-family:'Playfair_Display',serif]">
           <a href="/">Trixia Mae Banzon</a>
         </h1>
 
         {/* Job Title */}
-        <h2 className="mt-3 text-lg font-medium tracking-tight text-slate-200 sm:text-xl">
-          Full-Stack Developer
+        <h2 className="mt-1 text-lg font-semibold tracking-tight text-[#c084fc] sm:text-xl">
+          Junior Web Developer
         </h2>
 
         {/* Bio Text */}
@@ -20,40 +31,51 @@ export default function Hero() {
         {/* Navigation */}
         <nav className="nav hidden lg:block" aria-label="In-page jump links">
           <ul className="mt-16 w-max space-y-2">
-            <li>
-              <a className="group flex items-center py-3" href="#about">
-                <span className="mr-4 h-px w-8 bg-slate-600 transition-all group-hover:w-16 group-hover:bg-[#64ffda]"></span>
-                <span className="text-xs font-bold uppercase tracking-widest text-slate-400 group-hover:text-[#64ffda]">
-                  About
-                </span>
-              </a>
-            </li>
-            <li>
-              <a className="group flex items-center py-3" href="#experience">
-                <span className="mr-4 h-px w-8 bg-slate-600 transition-all group-hover:w-16 group-hover:bg-[#64ffda]"></span>
-                <span className="text-xs font-bold uppercase tracking-widest text-slate-400 group-hover:text-[#64ffda]">
-                  Experience
-                </span>
-              </a>
-            </li>
-            <li>
-              <a className="group flex items-center py-3" href="#projects">
-                <span className="mr-4 h-px w-8 bg-slate-600 transition-all group-hover:w-16 group-hover:bg-[#64ffda]"></span>
-                <span className="text-xs font-bold uppercase tracking-widest text-slate-400 group-hover:text-[#64ffda]">
-                  Projects
-                </span>
-              </a>
-            </li>
+            {navItems.map((item) => {
+              const sectionId = item.href.replace("#", "");
+              const isActive = activeSection === sectionId;
+
+              return (
+                <li key={item.name}>
+                  <a className="group flex items-center py-3" href={item.href}>
+                    {/* Expanding Horizontal Indicator Line */}
+                    <span
+                      className={`mr-4 h-px transition-all ${
+                        isActive
+                          ? "w-16 bg-[#c084fc]"
+                          : "w-8 bg-slate-600 group-hover:w-16 group-hover:bg-[#c084fc]"
+                      }`}
+                    ></span>
+                    
+                    {/* Section Name Text */}
+                    <span
+                      className={`text-xs font-bold uppercase tracking-widest transition-colors ${
+                        isActive
+                          ? "text-[#c084fc]"
+                          : "text-slate-400 group-hover:text-[#c084fc]"
+                      }`}
+                    >
+                      {item.name}
+                    </span>
+                  </a>
+                </li>
+              );
+            })}
           </ul>
         </nav>
       </div>
 
+      {/* Social Links */}
       <ul className="ml-1 mt-8 flex items-center gap-6 text-sm font-medium text-slate-400">
-        <li className="hover:text-[#64ffda] transition">
-          <a href="https://github.com" target="_blank" rel="noreferrer">GitHub</a>
+        <li className="hover:text-[#c084fc] transition-colors">
+          <a href="https://github.com" target="_blank" rel="noreferrer">
+            GitHub
+          </a>
         </li>
-        <li className="hover:text-[#64ffda] transition">
-          <a href="https://linkedin.com" target="_blank" rel="noreferrer">LinkedIn</a>
+        <li className="hover:text-[#c084fc] transition-colors">
+          <a href="https://linkedin.com" target="_blank" rel="noreferrer">
+            LinkedIn
+          </a>
         </li>
       </ul>
     </header>
