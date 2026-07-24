@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { WORK_EXPERIENCE, LEADERSHIP_EXPERIENCE } from "../data/experience"; // Adjust path if needed
-import type { ExperienceItem } from "../data/experience"; // Inline/Type-only import
+import { WORK_EXPERIENCE, LEADERSHIP_EXPERIENCE } from "../data/experience"; 
+import type { ExperienceItem } from "../data/experience";
 
 export default function Experience() {
   const [activeTab, setActiveTab] = useState<"work" | "leadership">("work");
@@ -21,11 +21,11 @@ export default function Experience() {
         </h2>
       </div>
 
-      {/* Horizontal Tabs */}
-      <div className="mb-8 flex border-b border-slate-700/60 text-sm font-medium">
+      {/* Horizontal Tabs - Adjusted mb-2 to mb-5 for balanced spacing */}
+      <div className="mb-5 flex border-b border-slate-700/60 text-sm font-medium">
         <button
           onClick={() => setActiveTab("work")}
-          className={`relative pb-3 pr-4 transition-colors ${
+          className={`relative px-4 pb-3 transition-colors ${
             activeTab === "work" ? "text-[#c084fc]" : "text-slate-400 hover:text-slate-200"
           }`}
         >
@@ -65,14 +65,16 @@ export default function Experience() {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -8 }}
             transition={{ duration: 0.2, ease: "easeOut" }}
-            className="group/jobs space-y-12"
+            className="group/jobs space-y-4"
           >
             {currentData.map((item: ExperienceItem) => (
               <div
                 key={item.id}
-                className="group relative grid transition-all sm:grid-cols-8 sm:gap-8 md:gap-4 lg:hover:!opacity-100 lg:group-hover/jobs:opacity-50"
+                /* Adjusted vertical padding slightly up to py-5 */
+                className="group relative grid p-5 sm:px-6 sm:py-5 transition-all sm:grid-cols-8 sm:gap-8 md:gap-4 lg:hover:!opacity-100 lg:group-hover/jobs:opacity-50"
               >
-                <div className="absolute -inset-x-4 -inset-y-4 z-0 hidden rounded-md transition motion-reduce:transition-none lg:-inset-x-6 lg:block lg:group-hover:bg-slate-800/50 lg:group-hover:shadow-[inset_0_1px_0_0_rgba(148,163,184,0.1)] lg:group-hover:drop-shadow-lg" />
+                {/* Hover overlay filling card bounds */}
+                <div className="absolute inset-0 z-0 hidden rounded-md transition motion-reduce:transition-none lg:block lg:group-hover:bg-slate-800/50 lg:group-hover:shadow-[inset_0_1px_0_0_rgba(148,163,184,0.1)] lg:group-hover:drop-shadow-lg" />
 
                 <header className="z-10 mb-2 mt-1 text-xs font-semibold uppercase tracking-wide text-slate-400 sm:col-span-2">
                   {item.period}
