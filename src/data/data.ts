@@ -4,8 +4,9 @@ export interface ExperienceItem {
   period: string;
   role: string;
   company: string;
-  description: string;
+  description: string[];
   skills?: string[];
+  link?: string;
 }
 
 export const ABOUT_PARAGRAPHS: string[] = [
@@ -22,26 +23,34 @@ export const WORK_EXPERIENCE: ExperienceItem[] = [
     role: "Website Developer Intern",
     company: "DOST-SEI",
     description:
-      "Developed full-stack web applications, built RESTful APIs using Laravel and PHP, and integrated responsive frontend UIs using WordPress and JavaScript.",
+      ["Contributed to the **development and redesign of the new official DOST website**, ensuring a modern UI/UX, responsive layouts, and cross-browser accessibility.",
+        "Built a **customizable WordPress Quick Links plugin** with a user-friendly admin dashboard, enabling non-technical staff to easily manage and publish forms, announcements, and site content.",
+        "Developed an **interactive map of DOST agencies** with dynamic filtering by region and specialty, improving user navigation across desktop and mobile devices."
+      ],
     skills: ["Laravel", "PHP", "WordPress", "JavaScript"],
+    link: "https://www.sei.dost.gov.ph/"
   },
 ];
 
 export const LEADERSHIP_EXPERIENCE: ExperienceItem[] = [
   {
     id: "leadership-1",
-    period: "2023 — 2024",
-    role: "Co-Head, [Committee Name]",
-    company: "Student Organization",
-    description:
-      "Co-led a committee of members in planning and executing organizational initiatives. Oversaw task delegation, managed project timelines, and coordinated cross-functional teams to ensure smooth delivery.",
+    period: "Aug 2025 — Feb 2026",
+    role: "Co-Head, Job Fair Committee",
+    company: "UPLB Computer Science Society (COSS)",
+    description: [
+        "Maintained active communication with partner companies for the **42nd Computer Science Week**, assisting representatives with documentation, logistics, and on-site support to ensure a smooth experience.",
+        "Handled event permits, legal compliance documents, and venue arrangements for seamless on-ground execution."
+      ],
+    link: "https://www.facebook.com/uplbcossph"
   },
   {
     id: "leadership-2",
-    period: "2022 — 2023",
-    role: "Co-Head, [Committee Name]",
-    company: "Student Organization",
+    period: "Aug 2024 — Mar 2025",
+    role: "Co-Head, Marketing and Advertising Committee",
+    company: "UPLB Computer Science Society (COSS)",
     description:
-      "Spearheaded technical workshops and logistics for major org events, fostering collaboration and ensuring high engagement among participants.",
+      ["Co-led content scheduling and marketing strategies for the organization's flagship event, **41st Computer Science Week**, driving event visibility and audience engagement across digital platforms."],
+    link: "https://www.facebook.com/uplbcossph"
   },
 ];
