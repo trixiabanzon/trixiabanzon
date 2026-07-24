@@ -134,11 +134,11 @@ export default function Experience() {
 
                   {/* SKILL TAGS */}
                   {item.skills && item.skills.length > 0 && (
-                    <ul className="mt-4 flex flex-wrap gap-1.5" aria-label="Skills used">
+                    <ul className="mt-4 flex flex-wrap gap-2" aria-label="Skills used">
                       {item.skills.map((skill) => (
                         <li
                           key={skill}
-                          className="relative z-30 rounded-full bg-[#c084fc]/10 px-3 py-1 text-xs font-medium text-[#c084fc]"
+                          className="relative z-30 rounded-full bg-[#c084fc]/10 px-3.5 py-1 text-[13px] font-medium text-[#c084fc]"
                         >
                           {skill}
                         </li>
