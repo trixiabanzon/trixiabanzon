@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { WORK_EXPERIENCE, LEADERSHIP_EXPERIENCE } from "../data/experience"; 
-import type { ExperienceItem } from "../data/experience";
+import { WORK_EXPERIENCE, LEADERSHIP_EXPERIENCE } from "../data/data"; 
+import type { ExperienceItem } from "../data/data";
 
 export default function Experience() {
   const [activeTab, setActiveTab] = useState<"work" | "leadership">("work");
@@ -21,7 +21,7 @@ export default function Experience() {
         </h2>
       </div>
 
-      {/* Horizontal Tabs - Adjusted mb-2 to mb-5 for balanced spacing */}
+      {/* Tabs */}
       <div className="mb-5 flex border-b border-slate-700/60 text-sm font-medium">
         <button
           onClick={() => setActiveTab("work")}
@@ -56,7 +56,7 @@ export default function Experience() {
         </button>
       </div>
 
-      {/* FIXED CONTAINER HEIGHT */}
+      {/* Content Container */}
       <div className="relative min-h-[380px] sm:min-h-[420px]">
         <AnimatePresence mode="wait">
           <motion.div
@@ -70,10 +70,9 @@ export default function Experience() {
             {currentData.map((item: ExperienceItem) => (
               <div
                 key={item.id}
-                /* Adjusted vertical padding slightly up to py-5 */
                 className="group relative grid p-5 sm:px-6 sm:py-5 transition-all sm:grid-cols-8 sm:gap-8 md:gap-4 lg:hover:!opacity-100 lg:group-hover/jobs:opacity-50"
               >
-                {/* Hover overlay filling card bounds */}
+                {/* Hover overlay */}
                 <div className="absolute inset-0 z-0 hidden rounded-md transition motion-reduce:transition-none lg:block lg:group-hover:bg-slate-800/50 lg:group-hover:shadow-[inset_0_1px_0_0_rgba(148,163,184,0.1)] lg:group-hover:drop-shadow-lg" />
 
                 <header className="z-10 mb-2 mt-1 text-xs font-semibold uppercase tracking-wide text-slate-400 sm:col-span-2">
@@ -90,14 +89,6 @@ export default function Experience() {
                   <p className="mt-2 text-sm leading-normal text-slate-400">
                     {item.description}
                   </p>
-
-                  {item.bullets && item.bullets.length > 0 && (
-                    <ul className="mt-3 list-disc space-y-1 pl-4 text-xs text-slate-400">
-                      {item.bullets.map((bullet, idx) => (
-                        <li key={idx}>{bullet}</li>
-                      ))}
-                    </ul>
-                  )}
 
                   <ul className="mt-4 flex flex-wrap gap-1.5" aria-label="Skills used">
                     {item.skills.map((skill) => (
