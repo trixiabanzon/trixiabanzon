@@ -147,18 +147,10 @@ export default function App() {
 
           {/* Main Content Column */}
           <main id="content" className="lg:w-[55%] lg:py-24">
-            <section id="about" className="scroll-mt-24 mb-16 lg:mb-24">
-              <About />
-            </section>
-            <section id="experience" className="scroll-mt-24 mb-16 lg:mb-24">
-              <Experience />
-            </section>
-            <section id="projects" className="scroll-mt-24 mb-16 lg:mb-24">
-              <Projects />
-            </section>
-            <section id="interests" className="scroll-mt-24">
-              <Interests />
-            </section>
+            <About />
+            <Experience />
+            <Projects />
+            <Interests />
           </main>
         </div>
       </div>
