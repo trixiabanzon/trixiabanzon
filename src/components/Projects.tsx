@@ -1,129 +1,119 @@
-import { useState } from "react";
+import { motion } from "framer-motion";
+import externalLink from "../assets/external-link.svg";
+
+export interface ProjectItem {
+  id: string;
+  title: string;
+  description: string;
+  skills: string[];
+  link: string;
+  image: string;
+}
+
+// 4 Sample Projects with placeholder photos
+const PROJECTS: ProjectItem[] = [
+  {
+    id: "proj-1",
+    title: "E-Commerce Dashboard",
+    description:
+      "A full-stack admin dashboard with real-time analytics, inventory management, and sales reporting.",
+    skills: ["React", "TypeScript", "Node.js", "Tailwind CSS"],
+    link: "https://github.com",
+    image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=800&auto=format&fit=crop",
+  },
+  {
+    id: "proj-2",
+    title: "RESTful API Auth Engine",
+    description:
+      "High-throughput backend service with JWT authentication, RBAC, and rate limiting.",
+    skills: ["Node.js", "Express", "PostgreSQL", "Docker"],
+    link: "https://github.com",
+    image: "https://images.unsplash.com/photo-1555066931-4365d14bab8c?q=80&w=800&auto=format&fit=crop",
+  },
+  {
+    id: "proj-3",
+    title: "Task & Workflow Tracker",
+    description:
+      "Collaborative task manager featuring Kanban boards, permissions, and live WebSocket updates.",
+    skills: ["React", "Tailwind CSS", "Socket.io", "MongoDB"],
+    link: "https://github.com",
+    image: "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=800&auto=format&fit=crop",
+  },
+  {
+    id: "proj-4",
+    title: "AI Portfolio Showcase",
+    description:
+      "Interactive modern portfolio featuring fluid Framer Motion animations and dark mode aesthetic.",
+    skills: ["React", "TypeScript", "Framer Motion"],
+    link: "https://github.com",
+    image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=800&auto=format&fit=crop",
+  },
+];
 
 export default function Projects() {
-  const projectsList = [
-    {
-      id: "alumni",
-      title: "Alumni Tracking System",
-      description:
-        "A full-stack web application designed to connect and track university alumni. Features include user authentication, profile management, interactive dashboards, and RESTful API integration.",
-      tech: ["Node.js", "Express.js", "MongoDB", "React", "Tailwind CSS"],
-      link: "https://github.com/yourusername/alumni-tracker",
-      image: "https://via.placeholder.com/600x300",
-    },
-    {
-      id: "interpreter",
-      title: "Programming Language Interpreter",
-      description:
-        "Built a custom programming language interpreter from scratch. Implemented lexical analysis, parsing (AST construction), and evaluation logic to process custom syntax.",
-      tech: ["Python", "C++", "Data Structures"],
-      link: "https://github.com/yourusername/interpreter",
-      image: "https://via.placeholder.com/600x300",
-    },
-    {
-      id: "traffic-sim",
-      title: "Traffic Simulation",
-      description:
-        "Developed a computer simulation modeling agent behavior and vehicle flow in traffic bottlenecks. Used mathematical algorithms to analyze congestion patterns.",
-      tech: ["JavaScript", "HTML5 Canvas", "Algorithms"],
-      link: "https://github.com/yourusername/traffic-sim",
-      image: "https://via.placeholder.com/600x300",
-    },
-  ];
-
-  const [activeTab, setActiveTab] = useState(0);
-  const activeProject = projectsList[activeTab];
-
   return (
     <section
       id="projects"
-      className="mb-16 scroll-mt-16 md:mb-24 lg:mb-36 lg:scroll-mt-24"
-      aria-label="Selected Projects"
+      className="mb-16 scroll-mt-16 md:mb-24 lg:mb-32 lg:scroll-mt-24"
+      aria-label="Featured Projects"
     >
       {/* Mobile Sticky Section Header */}
-      <div className="sticky top-0 z-20 -mx-6 mb-4 w-screen bg-[#0a192f]/75 px-6 py-5 backdrop-blur md:-mx-12 md:px-12 lg:sr-only lg:relative lg:top-auto lg:mx-0 lg:w-auto lg:opacity-0">
+      <div className="sticky top-0 z-20 -mx-6 mb-4 w-screen bg-[#0d0f17]/75 px-6 py-5 backdrop-blur md:-mx-12 md:px-12 lg:relative lg:top-auto lg:mx-0 lg:w-auto lg:opacity-0 lg:sr-only">
         <h2 className="text-xs font-bold uppercase tracking-widest text-slate-200">
           Projects
         </h2>
       </div>
 
-      {/* Top Tab Navigation Bar */}
-      <div className="mb-8 flex overflow-x-auto border-b border-slate-800 pb-px scrollbar-none">
-        <div className="flex gap-2">
-          {projectsList.map((project, index) => {
-            const isActive = activeTab === index;
-            return (
-              <button
-                key={project.id}
-                onClick={() => setActiveTab(index)}
-                className={`relative whitespace-nowrap px-4 py-2.5 text-sm font-medium transition-colors duration-200 ${
-                  isActive
-                    ? "text-[#64ffda]"
-                    : "text-slate-400 hover:text-slate-200"
-                }`}
-              >
-                {project.title}
+      {/* 2x2 GRID CONTAINER */}
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+        {PROJECTS.map((project) => (
+          <a
+            key={project.id}
+            href={project.link}
+            target="_blank"
+            rel="noreferrer noopener"
+            className="group relative aspect-[4/3] overflow-hidden rounded-xl border border-slate-700/60 bg-[#112240] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#c084fc]"
+          >
+            {/* BASE IMAGE */}
+            <img
+              src={project.image}
+              alt={project.title}
+              className="h-full w-full object-cover object-center transition-transform duration-500 ease-out group-hover:scale-110"
+            />
 
-                {/* Active Underline Highlight */}
-                {isActive && (
-                  <span className="absolute bottom-0 left-0 h-0.5 w-full bg-[#64ffda]" />
-                )}
-              </button>
-            );
-          })}
-        </div>
-      </div>
+            {/* HOVER OVERLAY (Fades and slides in on hover) */}
+            <motion.div className="absolute inset-0 z-10 flex flex-col justify-between bg-[#0d0f17]/90 p-5 opacity-0 backdrop-blur-sm transition-all duration-300 group-hover:opacity-100">
+              {/* Top Row: Title & External Icon */}
+              <div className="flex items-start justify-between gap-2">
+                <h3 className="text-base font-semibold text-slate-100 group-hover:text-[#c084fc] transition-colors">
+                  {project.title}
+                </h3>
+                <img
+                  src={externalLink}
+                  alt=""
+                  className="h-4 w-4 shrink-0 brightness-0 invert-[60%] transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5"
+                />
+              </div>
 
-      {/* Active Project Content Display */}
-      <div className="rounded-lg border border-slate-800/80 bg-slate-900/30 p-6 backdrop-blur-sm transition-all">
-        <div className="grid gap-6 md:grid-cols-12 md:items-center">
-          {/* Project Details */}
-          <div className="md:col-span-7">
-            <h3 className="text-xl font-semibold text-slate-200">
-              <a
-                href={activeProject.link}
-                target="_blank"
-                rel="noreferrer"
-                className="group/link inline-flex items-center gap-1 hover:text-[#64ffda] focus-visible:text-[#64ffda]"
-              >
-                <span>{activeProject.title}</span>
-                <span className="inline-block text-sm transition-transform group-hover/link:-translate-y-0.5 group-hover/link:translate-x-0.5 motion-reduce:transition-none">
-                  ↗
-                </span>
-              </a>
-            </h3>
+              {/* Middle: Description */}
+              <p className="my-auto text-xs leading-relaxed text-slate-300 line-clamp-3">
+                {project.description}
+              </p>
 
-            <p className="mt-3 text-sm leading-relaxed text-slate-400">
-              {activeProject.description}
-            </p>
-
-            {/* Tech Stack Pills */}
-            <ul
-              className="mt-4 flex flex-wrap gap-1.5"
-              aria-label="Technologies used"
-            >
-              {activeProject.tech.map((item, tIndex) => (
-                <li
-                  key={tIndex}
-                  className="flex items-center rounded-full bg-[#64ffda]/10 px-3 py-1 text-xs font-medium text-[#64ffda]"
-                >
-                  {item}
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          {/* Optional Project Image/Preview */}
-          {activeProject.image && (
-            <div className="md:col-span-5">
-              <img
-                src={activeProject.image}
-                alt={activeProject.title}
-                className="w-full rounded border border-slate-700/50 object-cover opacity-80 transition hover:opacity-100"
-              />
-            </div>
-          )}
-        </div>
+              {/* Bottom: Skill Badges */}
+              <ul className="flex flex-wrap gap-1.5 pt-2" aria-label="Technologies used">
+                {project.skills.map((skill) => (
+                  <li
+                    key={skill}
+                    className="rounded-full bg-[#c084fc]/15 px-2.5 py-0.5 text-[11px] font-medium text-[#c084fc]"
+                  >
+                    {skill}
+                  </li>
+                ))}
+              </ul>
+            </motion.div>
+          </a>
+        ))}
       </div>
     </section>
   );
