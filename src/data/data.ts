@@ -5,7 +5,7 @@ export interface ExperienceItem {
   role: string;
   company: string;
   description: string;
-  skills: string[];
+  skills?: string[];
 }
 
 export const ABOUT_PARAGRAPHS: string[] = [
@@ -18,12 +18,12 @@ export const ABOUT_PARAGRAPHS: string[] = [
 export const WORK_EXPERIENCE: ExperienceItem[] = [
   {
     id: "work-1",
-    period: "2023 — Present",
-    role: "Software Engineer / Developer",
-    company: "Company Name",
+    period: "June — July 2025",
+    role: "Website Developer Intern",
+    company: "DOST-SEI",
     description:
-      "Developed full-stack web applications, built RESTful APIs using Node.js and Express.js, and integrated responsive frontend UIs using Tailwind CSS.",
-    skills: ["Node.js", "Express.js", "Tailwind CSS", "JavaScript"],
+      "Developed full-stack web applications, built RESTful APIs using Laravel and PHP, and integrated responsive frontend UIs using WordPress and JavaScript.",
+    skills: ["Laravel", "PHP", "WordPress", "JavaScript"],
   },
 ];
 
@@ -35,7 +35,6 @@ export const LEADERSHIP_EXPERIENCE: ExperienceItem[] = [
     company: "Student Organization",
     description:
       "Co-led a committee of members in planning and executing organizational initiatives. Oversaw task delegation, managed project timelines, and coordinated cross-functional teams to ensure smooth delivery.",
-    skills: ["Team Leadership", "Project Management", "Event Coordination"],
   },
   {
     id: "leadership-2",
@@ -44,6 +43,5 @@ export const LEADERSHIP_EXPERIENCE: ExperienceItem[] = [
     company: "Student Organization",
     description:
       "Spearheaded technical workshops and logistics for major org events, fostering collaboration and ensuring high engagement among participants.",
-    skills: ["Strategic Planning", "Resource Allocation", "Cross-Team Collaboration"],
   },
 ];
