@@ -9,6 +9,54 @@ export interface ExperienceItem {
   link?: string;
 }
 
+export interface ProjectItem {
+  id: string;
+  title: string;
+  description: string;
+  skills: string[];
+  link?: string;
+  image?: string;
+}
+
+export const PROJECTS: ProjectItem[] = [
+  {
+    id: "proj-1",
+    title: "E-Commerce Management Dashboard",
+    description:
+      "A full-stack admin dashboard featuring **real-time analytics**, inventory management, and automated sales reporting. Built to help small businesses streamline order processing.",
+    skills: ["React", "TypeScript", "Node.js", "Express", "Tailwind CSS"],
+    link: "https://example.com",
+    image: "/path-to-image1.jpg", 
+  },
+  {
+    id: "proj-2",
+    title: "RESTful API Service & Auth Engine",
+    description:
+      "Designed a high-throughput backend service with **JWT authentication**, role-based access control (RBAC), and rate limiting for secure third-party integrations.",
+    skills: ["Node.js", "Express", "PostgreSQL", "Docker", "Swagger"],
+    link: "https://example.com",
+    image: "/path-to-image2.jpg",
+  },
+  {
+    id: "proj-3",
+    title: "Task & Workflow Tracking App",
+    description:
+      "A collaborative task manager with drag-and-drop Kanban boards, team permissions, and **WebSocket-powered live updates** for remote teams.",
+    skills: ["React", "Tailwind CSS", "Socket.io", "MongoDB"],
+    link: "https://example.com",
+    image: "/path-to-image3.jpg",
+  },
+  {
+    id: "proj-4",
+    title: "Personal Portfolio Website",
+    description:
+      "A fast, modern personal showcase featuring dynamic section highlighting, responsive layout, custom themes, and clean modern typography.",
+    skills: ["React", "TypeScript", "Tailwind CSS", "Framer Motion"],
+    link: "https://example.com",
+    image: "/path-to-image4.jpg",
+  },
+];
+
 export const ABOUT_PARAGRAPHS: string[] = [
   "Hello there! I'm Trixia, a Computer Science graduate from the **University of the Philippines Los Baños** specializing in full-stack web development. My focus lies in building scalable backends using **Node.js** and **Express.js**, while crafting responsive, modern interfaces with **Tailwind CSS** and **React**. I'm eager to build real-world software alongside passionate developers.",
   "I strive to write clean, maintainable code for smooth UI/UX, constantly exploring new tools and best practices to keep applications fast and reliable.",
