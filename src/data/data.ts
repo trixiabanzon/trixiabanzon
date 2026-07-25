@@ -1,3 +1,7 @@
+import lolcodeImg from "../assets/projects/LOLCODE.jpg";
+import fieldfareImg from "../assets/projects/fieldfare.jpg";
+import ambGif from "../assets/projects/ABM.gif";
+
 // data.ts
 export interface ExperienceItem {
   id: string;
@@ -21,44 +25,41 @@ export interface ProjectItem {
 export const PROJECTS: ProjectItem[] = [
   {
     id: "proj-1",
-    title: "E-Commerce Management Dashboard",
+    title: "ABM of UPLB Junction Traffic Flow",
     description:
-      "A full-stack admin dashboard featuring **real-time analytics**, inventory management, and automated sales reporting. Built to help small businesses streamline order processing.",
-    skills: ["React", "TypeScript", "Node.js", "Express", "Tailwind CSS"],
-    link: "https://example.com",
-    image: "/path-to-image1.jpg", 
+      "An agent-based model of intersection traffic flow powered by traffic data extracted from local CCTV footage using CVAT. It uses OOP concepts to simulate vehicle interactions and evaluate traffic management strategies.",
+    skills: ["GAML", "OOP", "CVAT", "Docker"],
+    image: ambGif, 
   },
   {
     id: "proj-2",
-    title: "RESTful API Service & Auth Engine",
+    title: "IsKonek: Alumni Relations System",
     description:
-      "Designed a high-throughput backend service with **JWT authentication**, role-based access control (RBAC), and rate limiting for secure third-party integrations.",
-    skills: ["Node.js", "Express", "PostgreSQL", "Docker", "Swagger"],
-    link: "https://example.com",
+      "An alumni tracking and relations platform that enables administrators to manage UPLB graduate records, while allowing alumni to connect, update career profiles, and share job opportunities within the university network.",
+    skills: ["React", "Tailwind CSS", "Express.js", "PostgreSQL"],
+    link: "https://iskonek.vercel.app",
     image: "/path-to-image2.jpg",
   },
   {
     id: "proj-3",
-    title: "Task & Workflow Tracking App",
+    title: "LOLCODE Language Interpreter",
     description:
-      "A collaborative task manager with drag-and-drop Kanban boards, team permissions, and **WebSocket-powered live updates** for remote teams.",
-    skills: ["React", "Tailwind CSS", "Socket.io", "MongoDB"],
-    link: "https://example.com",
-    image: "/path-to-image3.jpg",
+      "A LOLCODE programming language interpreter built using Python. It features lexical analyzer, syntax analyzer, and an intuitive GUI to handle tokenization, validation, and code execution.",
+    skills: ["Python", "LOLCODE", "Lexical Analysis", "Parsing"],
+    image: lolcodeImg,
   },
   {
     id: "proj-4",
-    title: "Personal Portfolio Website",
+    title: "FieldFare: Farm-to-Table Marketplace",
     description:
-      "A fast, modern personal showcase featuring dynamic section highlighting, responsive layout, custom themes, and clean modern typography.",
-    skills: ["React", "TypeScript", "Tailwind CSS", "Framer Motion"],
-    link: "https://example.com",
-    image: "/path-to-image4.jpg",
+      "A farm-to-table e-commerce platform that connects local farmers directly with consumers. It is built to secure fair produce pricing and deliver fresh local crops straight to households.",
+    skills: ["JavaScript", "CSS", "Express.js", "Node.js", "MongoDB"],
+    image: fieldfareImg,
   },
 ];
 
 export const ABOUT_PARAGRAPHS: string[] = [
-  "Hello there! I'm Trixia, a Computer Science graduate from the **University of the Philippines Los Baños** specializing in full-stack web development. My focus lies in building scalable backends using **Node.js** and **Express.js**, while crafting responsive, modern interfaces with **Tailwind CSS** and **React**. I'm eager to build real-world software alongside passionate developers.",
+  "Hello there! I'm Trixia, a Computer Science graduate from the **University of the Philippines Los Baños** specializing in full-stack web development. My focus lies in building scalable backends using **Node.js** and **Express.js**, while crafting responsive, modern interfaces with **Tailwind CSS** and **React**. I'm eager to build software alongside passionate developers.",
   "I strive to write clean, maintainable code for smooth UI/UX, constantly exploring new tools and best practices to keep applications fast and reliable.",
   "I've built web and mobile applications, as well as an agent-based simulation model for my academic projects. I've also been part of my student organization's web development team and took on leadership roles that helped strengthen my communication and collaboration skills.",
   "Outside of development, you'll usually find me playing with my cats, reading horror books, or playing video games like **Hades II** and **Genshin Impact**.",
