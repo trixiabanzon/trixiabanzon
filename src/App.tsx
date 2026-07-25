@@ -149,6 +149,22 @@ export default function App() {
             <About />
             <Experience />
             <Projects />
+
+            {/* Footer Credit Section */}
+            <footer className="mt-24 text-xs text-slate-500 leading-relaxed">
+              <p>
+                Heavily inspired by the portfolio of{" "}
+                <a
+                  href="https://brittanychiang.com"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="font-medium text-slate-300 underline decoration-[#c084fc] decoration-2 underline-offset-4 transition-colors hover:text-[#c084fc]"
+                >
+                  Brittany Chiang
+                </a>
+                . Built with React, TypeScript, and Tailwind CSS.
+              </p>
+            </footer>
           </main>
         </div>
       </div>
