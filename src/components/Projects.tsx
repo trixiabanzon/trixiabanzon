@@ -1,60 +1,31 @@
-import { motion } from "framer-motion";
-import externalLink from "../assets/external-link.svg";
+import { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { PROJECTS } from "../data/data";
+import type { ProjectItem } from "../data/data";
 
-export interface ProjectItem {
-  id: string;
-  title: string;
-  description: string;
-  skills: string[];
-  link: string;
-  image: string;
-}
+// Helper to generate a live website screenshot preview URL via Microlink
+const getScreenshotUrl = (link?: string, fallbackImage?: string) => {
+  if (!link || link === "https://example.com" || link === "#" || link.startsWith("/")) {
+    return fallbackImage || "/placeholder.jpg";
+  }
+  return `https://api.microlink.io/?url=${encodeURIComponent(
+    link
+  )}&screenshot=true&meta=false&embed=screenshot.url`;
+};
 
-// 4 Sample Projects with placeholder photos
-const PROJECTS: ProjectItem[] = [
-  {
-    id: "proj-1",
-    title: "E-Commerce Dashboard",
-    description:
-      "A full-stack admin dashboard with real-time analytics, inventory management, and sales reporting.",
-    skills: ["React", "TypeScript", "Node.js", "Tailwind CSS"],
-    link: "https://github.com",
-    image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=800&auto=format&fit=crop",
-  },
-  {
-    id: "proj-2",
-    title: "RESTful API Auth Engine",
-    description:
-      "High-throughput backend service with JWT authentication, RBAC, and rate limiting.",
-    skills: ["Node.js", "Express", "PostgreSQL", "Docker"],
-    link: "https://github.com",
-    image: "https://images.unsplash.com/photo-1555066931-4365d14bab8c?q=80&w=800&auto=format&fit=crop",
-  },
-  {
-    id: "proj-3",
-    title: "Task & Workflow Tracker",
-    description:
-      "Collaborative task manager featuring Kanban boards, permissions, and live WebSocket updates.",
-    skills: ["React", "Tailwind CSS", "Socket.io", "MongoDB"],
-    link: "https://github.com",
-    image: "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=800&auto=format&fit=crop",
-  },
-  {
-    id: "proj-4",
-    title: "AI Portfolio Showcase",
-    description:
-      "Interactive modern portfolio featuring fluid Framer Motion animations and dark mode aesthetic.",
-    skills: ["React", "TypeScript", "Framer Motion"],
-    link: "https://github.com",
-    image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=800&auto=format&fit=crop",
-  },
-];
+// Check if project has a valid external live website link
+const isValidExternalLink = (link?: string) => {
+  return Boolean(link && link !== "https://example.com" && link !== "#" && !link.startsWith("/"));
+};
 
 export default function Projects() {
+  // State for image lightbox modal
+  const [selectedImage, setSelectedImage] = useState<{ src: string; title: string } | null>(null);
+
   return (
     <section
       id="projects"
-      className="mb-16 scroll-mt-16 md:mb-24 lg:mb-32 lg:scroll-mt-24"
+      className="mt-8 sm:mt-12 mb-16 scroll-mt-16 md:mb-24 lg:mb-32 lg:scroll-mt-24"
       aria-label="Featured Projects"
     >
       {/* Mobile Sticky Section Header */}
@@ -65,56 +36,122 @@ export default function Projects() {
       </div>
 
       {/* 2x2 GRID CONTAINER */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-        {PROJECTS.map((project) => (
-          <a
-            key={project.id}
-            href={project.link}
-            target="_blank"
-            rel="noreferrer noopener"
-            className="group relative aspect-[4/3] overflow-hidden rounded-xl border border-slate-700/60 bg-[#112240] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#c084fc]"
-          >
-            {/* BASE IMAGE */}
-            <img
-              src={project.image}
-              alt={project.title}
-              className="h-full w-full object-cover object-center transition-transform duration-500 ease-out group-hover:scale-110"
-            />
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-8">
+        {PROJECTS.map((project: ProjectItem) => {
+          const imageSrc = getScreenshotUrl(project.link, project.image);
+          const hasLiveLink = isValidExternalLink(project.link);
 
-            {/* HOVER OVERLAY (Fades and slides in on hover) */}
-            <motion.div className="absolute inset-0 z-10 flex flex-col justify-between bg-[#0d0f17]/90 p-5 opacity-0 backdrop-blur-sm transition-all duration-300 group-hover:opacity-100">
-              {/* Top Row: Title & External Icon */}
-              <div className="flex items-start justify-between gap-2">
-                <h3 className="text-base font-semibold text-slate-100 group-hover:text-[#c084fc] transition-colors">
-                  {project.title}
-                </h3>
-                <img
-                  src={externalLink}
-                  alt=""
-                  className="h-4 w-4 shrink-0 brightness-0 invert-[60%] transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5"
-                />
+          // Click handler to decide whether to navigate or expand image
+          const handleCardClick = (e: React.MouseEvent) => {
+            if (!hasLiveLink) {
+              e.preventDefault();
+              setSelectedImage({ src: imageSrc, title: project.title });
+            }
+          };
+
+          return (
+            <div key={project.id} className="flex flex-col gap-2 group/card">
+              {/* TOP HEADER: Clean Title Outside Above Picture */}
+              <div>
+                {hasLiveLink ? (
+                  <a
+                    href={project.link}
+                    target="_blank"
+                    rel="noreferrer noopener"
+                    className="text-base font-semibold text-slate-100 group-hover/card:text-[#c084fc] transition-colors break-words"
+                  >
+                    {project.title}
+                  </a>
+                ) : (
+                  <button
+                    onClick={() => setSelectedImage({ src: imageSrc, title: project.title })}
+                    className="text-left text-base font-semibold text-slate-100 group-hover/card:text-[#c084fc] transition-colors break-words"
+                  >
+                    {project.title}
+                  </button>
+                )}
               </div>
 
-              {/* Middle: Description */}
-              <p className="my-auto text-xs leading-relaxed text-slate-300 line-clamp-3">
-                {project.description}
-              </p>
+              {/* 16:9 RECTANGULAR PICTURE FRAME WITH PURPLE BORDER */}
+              <a
+                href={hasLiveLink ? project.link : "#"}
+                target={hasLiveLink ? "_blank" : "_self"}
+                rel={hasLiveLink ? "noreferrer noopener" : undefined}
+                onClick={handleCardClick}
+                className="group relative aspect-[16/9] overflow-hidden rounded-none border border-[#c084fc]/50 bg-[#112240] transition-colors duration-300 group-hover/card:border-[#c084fc] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#c084fc] cursor-pointer"
+              >
+                {/* BASE IMAGE FROM API / FALLBACK */}
+                <img
+                  src={imageSrc}
+                  alt={project.title}
+                  loading="lazy"
+                  className="h-full w-full object-cover object-top transition-transform duration-500 ease-out group-hover/card:scale-105"
+                />
 
-              {/* Bottom: Skill Badges */}
-              <ul className="flex flex-wrap gap-1.5 pt-2" aria-label="Technologies used">
-                {project.skills.map((skill) => (
-                  <li
-                    key={skill}
-                    className="rounded-full bg-[#c084fc]/15 px-2.5 py-0.5 text-[11px] font-medium text-[#c084fc]"
-                  >
-                    {skill}
-                  </li>
-                ))}
-              </ul>
-            </motion.div>
-          </a>
-        ))}
+                {/* HOVER OVERLAY */}
+                <motion.div className="absolute inset-0 z-10 flex flex-col justify-between bg-[#0d0f17]/90 p-3 sm:p-4 opacity-0 backdrop-blur-sm transition-all duration-300 group-hover/card:opacity-100 overflow-hidden">
+                  
+                  {/* Description: Takes more vertical space (up to 6 lines) */}
+                  <p className="text-[11px] sm:text-xs leading-tight sm:leading-relaxed text-slate-300 line-clamp-6">
+                    {project.description}
+                  </p>
+
+                  {/* Skills Badges: STRICTLY 1 LINE ONLY */}
+                  <ul className="flex flex-nowrap gap-1 pt-2 overflow-hidden items-center" aria-label="Technologies used">
+                    {project.skills.map((skill) => (
+                      <li
+                        key={skill}
+                        className="shrink-0 rounded-none bg-[#c084fc]/10 px-1.5 py-0.5 text-[9px] font-medium text-[#c084fc]"
+                      >
+                        {skill}
+                      </li>
+                    ))}
+                  </ul>
+
+                </motion.div>
+              </a>
+            </div>
+          );
+        })}
       </div>
+
+      {/* FULL-SCREEN IMAGE MODAL LIGHTBOX */}
+      <AnimatePresence>
+        {selectedImage && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            onClick={() => setSelectedImage(null)}
+            className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 p-4 backdrop-blur-md cursor-zoom-out"
+          >
+            <motion.div
+              initial={{ scale: 0.9, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              exit={{ scale: 0.9, opacity: 0 }}
+              onClick={(e) => e.stopPropagation()}
+              className="relative max-w-4xl max-h-[90vh] overflow-hidden border border-[#c084fc]/50 bg-[#0d0f17] p-2"
+            >
+              {/* Close Button */}
+              <button
+                onClick={() => setSelectedImage(null)}
+                className="absolute top-4 right-4 z-10 rounded-full bg-black/60 px-3 py-1 text-xs text-white hover:bg-[#c084fc] transition-colors"
+              >
+                ✕ Close
+              </button>
+
+              <img
+                src={selectedImage.src}
+                alt={selectedImage.title}
+                className="max-h-[80vh] w-auto object-contain mx-auto"
+              />
+              <p className="mt-2 text-center text-xs font-semibold text-slate-300">
+                {selectedImage.title}
+              </p>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </section>
   );
 }
