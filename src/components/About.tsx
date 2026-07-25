@@ -33,7 +33,8 @@ export default function About() {
 
       {/* TOP ROW: Profile Image + 1st Paragraph */}
       <div className="grid grid-cols-1 items-start gap-6 sm:grid-cols-[auto_1fr]">
-        <div className="relative h-44 w-40 shrink-0 sm:h-56 sm:w-52">
+        {/* CHANGED: Added mx-auto sm:mx-0 to center ONLY the photo wrapper on mobile */}
+        <div className="relative h-44 w-40 shrink-0 sm:h-56 sm:w-52 mx-auto sm:mx-0">
           {/* Static image container with a thicker, clearer border */}
           <div className="h-full w-full overflow-hidden rounded-lg border-[3px] border-slate-600 bg-[#112240] shadow-xl">
             <img
@@ -44,13 +45,13 @@ export default function About() {
           </div>
         </div>
 
-        {/* Right Side 1st Paragraph */}
+        {/* Right Side 1st Paragraph (Justified) */}
         <div className="text-[17px] leading-7 text-slate-400 text-justify">
           <p>{renderFormattedText(firstParagraph)}</p>
         </div>
       </div>
 
-      {/* BOTTOM ROW: Remaining Paragraphs */}
+      {/* BOTTOM ROW: Remaining Paragraphs (Justified) */}
       <div className="mt-6 space-y-4 text-[17px] leading-7 text-slate-400 text-justify">
         {remainingParagraphs.map((paragraph, index) => (
           <p key={index}>{renderFormattedText(paragraph)}</p>

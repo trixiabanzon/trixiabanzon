@@ -12,8 +12,18 @@ export default function Hero({ activeSection = "about" }: HeroProps) {
   ];
 
   return (
-    <header className="lg:sticky lg:top-0 lg:flex lg:max-h-screen lg:w-[45%] lg:flex-col lg:justify-between lg:py-24">
+    /* Changed: Added flex flex-col items-center text-center for mobile, then reset with lg:items-start lg:text-left */
+    <header className="flex flex-col items-center text-center lg:items-start lg:text-left lg:sticky lg:top-0 lg:flex lg:max-h-screen lg:w-[45%] lg:flex-col lg:justify-between lg:py-24">
       <div>
+        {/* If you add an <img> tag for your profile photo, wrap it like this: */}
+        {/* 
+        <img 
+          src="/path-to-photo.jpg" 
+          alt="Trixia Mae Banzon" 
+          className="mb-4 h-24 w-24 rounded-full mx-auto lg:mx-0 object-cover" 
+        /> 
+        */}
+
         {/* Name */}
         <h1 className="text-5xl font-normal italic tracking-tight text-slate-100 sm:text-[56px] [font-family:'Playfair_Display',serif]">
           <a href="/">Trixia Mae Banzon</a>
@@ -24,9 +34,8 @@ export default function Hero({ activeSection = "about" }: HeroProps) {
           Junior Web Developer
         </h2>
 
-        {/* Navigation Links */}
+        {/* Navigation Links (Hidden on mobile) */}
         <nav className="nav hidden lg:block" aria-label="In-page jump links">
-          {/* Changed mt-16 to mt-24 to push it lower */}
           <ul className="mt-24 w-max space-y-2">
             {navItems.map((item) => {
               const sectionId = item.href.replace("#", "");
@@ -61,14 +70,17 @@ export default function Hero({ activeSection = "about" }: HeroProps) {
       </div>
 
       {/* Footer Section */}
-      <div className="mt-8 flex flex-col gap-4">
+      {/* Changed: Added items-center lg:items-start */}
+      <div className="mt-8 flex flex-col items-center lg:items-start gap-4">
         {/* Pitch text */}
-        <p className="max-w-xs sm:max-w-sm text-sm leading-relaxed text-slate-400">
+        {/* Changed: Added mx-auto lg:mx-0 to keep paragraph centered on mobile */}
+        <p className="max-w-xs sm:max-w-sm text-sm leading-relaxed text-slate-400 mx-auto lg:mx-0">
           Have a project idea, want to collaborate, or just want to say hi? Drop me a message, I'd love to chat!
         </p>
 
-        {/* Social & Resume Icons with Tooltips */}
-        <div className="flex items-center gap-5 text-slate-400">
+        {/* Social & Resume Icons */}
+        {/* Changed: Added justify-center lg:justify-start */}
+        <div className="flex items-center justify-center lg:justify-start gap-5 text-slate-400">
           {/* GitHub */}
           <div className="group relative flex items-center justify-center">
             <a
@@ -134,7 +146,7 @@ export default function Hero({ activeSection = "about" }: HeroProps) {
               <svg className="h-5 w-5 stroke-current fill-none" viewBox="0 0 24 24" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                 <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
                 <polyline points="14 2 14 8 20 8" />
-                <line x1="16" y1="13" x2="8" y2="13" />
+                <line x1="16" y1="13" x2="8" y2="17" />
                 <line x1="16" y1="17" x2="8" y2="17" />
               </svg>
             </a>
