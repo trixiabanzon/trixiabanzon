@@ -51,7 +51,7 @@ export default function Projects() {
 
           return (
             <div key={project.id} className="flex flex-col gap-2 group/card">
-              {/* TOP HEADER: Clean Title Outside Above Picture */}
+              {/* TOP HEADER: Title Outside Container */}
               <div>
                 {hasLiveLink ? (
                   <a
@@ -72,44 +72,61 @@ export default function Projects() {
                 )}
               </div>
 
-              {/* 16:9 RECTANGULAR PICTURE FRAME WITH PURPLE BORDER */}
-              <a
-                href={hasLiveLink ? project.link : "#"}
-                target={hasLiveLink ? "_blank" : "_self"}
-                rel={hasLiveLink ? "noreferrer noopener" : undefined}
-                onClick={handleCardClick}
-                className="group relative aspect-[16/9] overflow-hidden rounded-none border border-[#c084fc]/50 bg-[#112240] transition-colors duration-300 group-hover/card:border-[#c084fc] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#c084fc] cursor-pointer"
-              >
-                {/* BASE IMAGE FROM API / FALLBACK */}
-                <img
-                  src={imageSrc}
-                  alt={project.title}
-                  loading="lazy"
-                  className="h-full w-full object-cover object-top transition-transform duration-500 ease-out group-hover/card:scale-105"
-                />
+              {/* SINGLE UNIFIED CONTAINER (Picture + Description + Tech Stack on Mobile) */}
+              <div className="flex flex-col border border-slate-800 bg-[#121624] sm:bg-transparent sm:border-0 overflow-hidden shadow-lg sm:shadow-none">
+                
+                {/* 1. PICTURE */}
+                <a
+                  href={hasLiveLink ? project.link : "#"}
+                  target={hasLiveLink ? "_blank" : "_self"}
+                  rel={hasLiveLink ? "noreferrer noopener" : undefined}
+                  onClick={handleCardClick}
+                  className="group relative aspect-[16/9] overflow-hidden border-b border-slate-800 sm:border sm:border-[#c084fc]/50 bg-[#112240] transition-colors duration-300 sm:group-hover/card:border-[#c084fc] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#c084fc] cursor-pointer"
+                >
+                  <img
+                    src={imageSrc}
+                    alt={project.title}
+                    loading="lazy"
+                    className="h-full w-full object-cover object-top transition-transform duration-500 ease-out sm:group-hover/card:scale-105"
+                  />
 
-                {/* HOVER OVERLAY */}
-                <motion.div className="absolute inset-0 z-10 flex flex-col justify-between bg-[#0d0f17]/90 p-3 sm:p-4 opacity-0 backdrop-blur-sm transition-all duration-300 group-hover/card:opacity-100 overflow-hidden">
-                  
-                  {/* Description: Takes more vertical space (up to 6 lines) */}
-                  <p className="text-[11px] sm:text-xs leading-tight sm:leading-relaxed text-slate-300 line-clamp-6">
+                  {/* DESKTOP HOVER OVERLAY (Only visible on sm: screens and up) */}
+                  <motion.div className="hidden sm:flex absolute inset-0 z-10 flex-col justify-between bg-[#0d0f17]/90 p-4 opacity-0 sm:group-hover/card:opacity-100 backdrop-blur-sm transition-all duration-300 overflow-hidden">
+                    <p className="text-xs leading-relaxed text-slate-300 line-clamp-6">
+                      {project.description}
+                    </p>
+                    <ul className="flex flex-nowrap gap-1 pt-2 overflow-hidden items-center" aria-label="Technologies used">
+                      {project.skills.map((skill) => (
+                        <li
+                          key={skill}
+                          className="shrink-0 rounded-none bg-[#c084fc]/10 px-1.5 py-0.5 text-[9px] font-medium text-[#c084fc]"
+                        >
+                          {skill}
+                        </li>
+                      ))}
+                    </ul>
+                  </motion.div>
+                </a>
+
+                {/* 2. DESCRIPTION & 3. TECH STACK (Inside the same container box on mobile) */}
+                <div className="flex flex-col gap-3 p-4 sm:hidden">
+                  <p className="text-xs leading-relaxed text-slate-300 text-justify">
                     {project.description}
                   </p>
 
-                  {/* Skills Badges: STRICTLY 1 LINE ONLY */}
-                  <ul className="flex flex-nowrap gap-1 pt-2 overflow-hidden items-center" aria-label="Technologies used">
+                  <ul className="flex flex-wrap gap-1.5 pt-1" aria-label="Technologies used">
                     {project.skills.map((skill) => (
                       <li
                         key={skill}
-                        className="shrink-0 rounded-none bg-[#c084fc]/10 px-1.5 py-0.5 text-[9px] font-medium text-[#c084fc]"
+                        className="rounded-none bg-[#c084fc]/15 px-2 py-0.5 text-[10px] font-medium text-[#c084fc] border border-[#c084fc]/20"
                       >
                         {skill}
                       </li>
                     ))}
                   </ul>
+                </div>
 
-                </motion.div>
-              </a>
+              </div>
             </div>
           );
         })}
