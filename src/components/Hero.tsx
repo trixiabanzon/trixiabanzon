@@ -1,3 +1,6 @@
+// 1. Import the PDF file at the top of the file
+import resumePdf from "../assets/resume/resume.pdf"; 
+
 interface HeroProps {
   activeSection?: string;
 }
@@ -12,7 +15,7 @@ export default function Hero({ activeSection = "about" }: HeroProps) {
   return (
     <header className="lg:sticky lg:top-0 lg:flex lg:max-h-screen lg:w-[45%] lg:flex-col lg:justify-between lg:py-24">
       <div>
-        {/* Name - Removed pt-8 here */}
+        {/* Name */}
         <h1 className="text-5xl font-normal italic tracking-tight text-slate-100 sm:text-[56px] [font-family:'Playfair_Display',serif]">
           <a href="/">Trixia Mae Banzon</a>
         </h1>
@@ -37,7 +40,6 @@ export default function Hero({ activeSection = "about" }: HeroProps) {
               return (
                 <li key={item.name}>
                   <a className="group flex items-center py-3" href={item.href}>
-                    {/* Expanding Horizontal Indicator Line */}
                     <span
                       className={`mr-4 h-px transition-all ${
                         isActive
@@ -46,7 +48,6 @@ export default function Hero({ activeSection = "about" }: HeroProps) {
                       }`}
                     ></span>
                     
-                    {/* Section Name Text */}
                     <span
                       className={`text-xs font-bold uppercase tracking-widest transition-colors ${
                         isActive
@@ -64,7 +65,7 @@ export default function Hero({ activeSection = "about" }: HeroProps) {
         </nav>
       </div>
 
-      {/* Social Links — Added -translate-y-2 to nudge it UP slightly */}
+      {/* Social & Resume Links */}
       <ul className="ml-1 mt-8 -translate-y-2 flex items-center gap-6 text-sm font-medium text-slate-400">
         <li className="hover:text-[#c084fc] transition-colors">
           <a href="https://github.com/trixiabanzon" target="_blank" rel="noreferrer">
@@ -74,6 +75,12 @@ export default function Hero({ activeSection = "about" }: HeroProps) {
         <li className="hover:text-[#c084fc] transition-colors">
           <a href="https://linkedin.com/in/trixiabanzon" target="_blank" rel="noreferrer">
             LinkedIn
+          </a>
+        </li>
+        <li className="hover:text-[#c084fc] transition-colors">
+          {/* 2. Use the imported variable as the href */}
+          <a href={resumePdf} target="_blank" rel="noreferrer">
+            Resume
           </a>
         </li>
       </ul>
