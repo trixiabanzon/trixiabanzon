@@ -5,7 +5,7 @@ import type { ProjectItem } from "../data/data";
 
 // Helper to generate a live website screenshot preview URL via Microlink
 const getScreenshotUrl = (link?: string, fallbackImage?: string) => {
-  if (!link || link === "https://example.com" || link === "#" || link.startsWith("/")) {
+  if (!link || link === "https://trixia.vercel.app" || link === "#" || link.startsWith("/")) {
     return fallbackImage || "/placeholder.jpg";
   }
   return `https://api.microlink.io/?url=${encodeURIComponent(
@@ -15,7 +15,7 @@ const getScreenshotUrl = (link?: string, fallbackImage?: string) => {
 
 // Check if project has a valid external live website link
 const isValidExternalLink = (link?: string) => {
-  return Boolean(link && link !== "https://example.com" && link !== "#" && !link.startsWith("/"));
+  return Boolean(link && link !== "https://trixia.vercel.app" && link !== "#" && !link.startsWith("/"));
 };
 
 export default function Projects() {

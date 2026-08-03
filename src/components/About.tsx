@@ -1,5 +1,5 @@
 import sablayPic from "../assets/sablay.jpg";
-import { ABOUT_PARAGRAPHS } from "../data/data"; // Adjust path to your data.ts file
+import { ABOUT_PARAGRAPHS } from "../data/data"; 
 
 // Helper function to convert **text** to styled <span> elements
 function renderFormattedText(text: string) {

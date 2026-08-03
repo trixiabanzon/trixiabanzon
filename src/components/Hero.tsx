@@ -12,17 +12,8 @@ export default function Hero({ activeSection = "about" }: HeroProps) {
   ];
 
   return (
-    /* Changed: Added flex flex-col items-center text-center for mobile, then reset with lg:items-start lg:text-left */
     <header className="flex flex-col items-center text-center lg:items-start lg:text-left lg:sticky lg:top-0 lg:flex lg:max-h-screen lg:w-[45%] lg:flex-col lg:justify-between lg:py-24">
       <div>
-        {/* If you add an <img> tag for your profile photo, wrap it like this: */}
-        {/* 
-        <img 
-          src="/path-to-photo.jpg" 
-          alt="Trixia Mae Banzon" 
-          className="mb-4 h-24 w-24 rounded-full mx-auto lg:mx-0 object-cover" 
-        /> 
-        */}
 
         {/* Name */}
         <h1 className="text-5xl font-normal italic tracking-tight text-slate-100 sm:text-[56px] [font-family:'Playfair_Display',serif]">
@@ -70,16 +61,13 @@ export default function Hero({ activeSection = "about" }: HeroProps) {
       </div>
 
       {/* Footer Section */}
-      {/* Changed: Added items-center lg:items-start */}
       <div className="mt-8 flex flex-col items-center lg:items-start gap-4">
         {/* Pitch text */}
-        {/* Changed: Added mx-auto lg:mx-0 to keep paragraph centered on mobile */}
         <p className="max-w-xs sm:max-w-sm text-sm leading-relaxed text-slate-400 mx-auto lg:mx-0">
           Have a project idea, want to collaborate, or just want to say hi? Drop me a message, I'd love to chat!
         </p>
 
         {/* Social & Resume Icons */}
-        {/* Changed: Added justify-center lg:justify-start */}
         <div className="flex items-center justify-center lg:justify-start gap-5 text-slate-400">
           {/* GitHub */}
           <div className="group relative flex items-center justify-center">
